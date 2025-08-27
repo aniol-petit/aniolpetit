@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título del Post 1 - Aniol's Blog</title>
+    <title>How I helped my friend getting an internship at REVER</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         .blog-page {
@@ -58,19 +58,88 @@
         }
         
         .picture-gallery {
+            position: relative;
             width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            max-width: 640px;
+            height: 360px;
             border-radius: 12px;
-            margin-bottom: 2rem;
+            margin: 0 auto 2rem auto;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+
+        .gallery-track {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .gallery-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            background: var(--bg-secondary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-image.active {
+            opacity: 1;
+        }
+
+        .gallery-controls {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.25);
+            padding: 6px 10px;
+            border-radius: 999px;
+            backdrop-filter: blur(6px);
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.6);
+            cursor: pointer;
+        }
+
+        .gallery-dot.active {
+            background: var(--accent-primary);
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.25);
+            color: white;
+            border: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-weight: 500;
-            border: 2px dashed var(--border-color);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(6px);
         }
+
+        .gallery-arrow:hover {
+            background: rgba(0,0,0,0.35);
+        }
+
+        .gallery-arrow.prev { left: 10px; }
+        .gallery-arrow.next { right: 10px; }
         
         .blog-content {
             text-align: justify;
@@ -144,6 +213,11 @@
                 top: 15px;
                 right: 15px;
             }
+
+            .picture-gallery {
+                max-width: 100%;
+                height: 260px;
+            }
         }
     </style>
 </head>
@@ -162,15 +236,13 @@
 
     <div class="blog-page">
         <div class="blog-header">
-            <h1 class="blog-title">Título del Post 1</h1>
-            <a href="../index.html#blog-section" class="back-link">← Volver al sitio</a>
+            <h1 class="blog-title">How I helped my friend getting an internship at REVER</h1>
+            <a href="../index.html#blog-section" class="back-link">← Back</a>
         </div>
         
-        <div class="blog-date">15 de Diciembre, 2024</div>
+        <div class="blog-date">4th April, 2025</div>
         
-        <div class="picture-gallery">
-            Galería de imágenes aquí
-        </div>
+        
         
         <div class="blog-content">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -180,6 +252,18 @@
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
             
             <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        </div>
+
+        <div class="picture-gallery" id="gallery">
+            <div class="gallery-track">
+                <!-- Add or remove images below; the script will auto-detect them -->
+                <img class="gallery-image active" src="../images/rever1.jpeg" alt="Gallery image 1">
+                <img class="gallery-image" src="../images/rever2.jpeg" alt="Gallery image 2">
+                <img class="gallery-image" src="../images/rever3.jpeg" alt="Gallery image 3">
+            </div>
+            <button class="gallery-arrow prev" aria-label="Previous image">&#10094;</button>
+            <button class="gallery-arrow next" aria-label="Next image">&#10095;</button>
+            <div class="gallery-controls" id="gallery-dots"></div>
         </div>
     </div>
 
@@ -223,9 +307,41 @@
             }
         }
 
-        // Initialize theme manager when DOM is ready
+        // Initialize theme manager and gallery when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             BlogThemeManager.init();
+
+            const gallery = document.getElementById('gallery');
+            if (gallery) {
+                const images = Array.from(gallery.querySelectorAll('.gallery-image'));
+                const prevBtn = gallery.querySelector('.prev');
+                const nextBtn = gallery.querySelector('.next');
+                const dotsContainer = document.getElementById('gallery-dots');
+                let current = 0;
+
+                // Build dots
+                images.forEach((_, idx) => {
+                    const dot = document.createElement('span');
+                    dot.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
+                    dot.addEventListener('click', () => goTo(idx));
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = Array.from(dotsContainer.querySelectorAll('.gallery-dot'));
+
+                function update() {
+                    images.forEach((img, i) => img.classList.toggle('active', i === current));
+                    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+                }
+
+                function goTo(index) {
+                    current = (index + images.length) % images.length;
+                    update();
+                }
+
+                prevBtn.addEventListener('click', () => goTo(current - 1));
+                nextBtn.addEventListener('click', () => goTo(current + 1));
+            }
         });
     </script>
 </body>

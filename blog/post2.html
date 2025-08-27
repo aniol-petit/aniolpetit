@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título del Post 2 - Aniol's Blog</title>
+    <title>Quotes I live by</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         .blog-page {
@@ -17,7 +17,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         
         .blog-title {
@@ -48,28 +48,13 @@
         }
         
         .blog-date {
-            color: var(--text-secondary);
+            color: var(--accent-primary);
             font-size: 1rem;
             font-weight: 500;
             font-style: italic;
             margin-bottom: 2rem;
             text-align: left;
             transition: color 0.3s ease;
-        }
-        
-        .picture-gallery {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-weight: 500;
-            border: 2px dashed var(--border-color);
-            transition: all 0.3s ease;
         }
         
         .blog-content {
@@ -82,6 +67,34 @@
         
         .blog-content p {
             margin-bottom: 1.5rem;
+        }
+        
+        .blog-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .blog-content li {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .blog-content li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow-hover);
+            border-color: var(--border-hover);
+        }
+        
+        .blog-content li p {
+            margin: 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-primary);
         }
         
         /* Theme Toggle for Blog Posts */
@@ -144,6 +157,14 @@
                 top: 15px;
                 right: 15px;
             }
+            
+            .blog-content li {
+                padding: 1rem;
+            }
+            
+            .blog-content li p {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -152,7 +173,7 @@
     <div class="blog-theme-toggle">
         <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
             <svg class="sun-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.59-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
             </svg>
             <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
@@ -162,24 +183,64 @@
 
     <div class="blog-page">
         <div class="blog-header">
-            <h1 class="blog-title">Título del Post 2</h1>
-            <a href="../index.html#blog-section" class="back-link">← Volver al sitio</a>
+            <h1 class="blog-title">Quotes I live by</h1>
+            <a href="../index.html#blog-section" class="back-link">← Back</a>
         </div>
         
-        <div class="blog-date">10 de Diciembre, 2024</div>
+        <div class="blog-date">22nd August, 2025</div>
         
-        <div class="picture-gallery">
-            Galería de imágenes aquí
-        </div>
         
         <div class="blog-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            
-            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <ul>
+                <li>
+                    <p>
+                        "Fall in love with failure, it'll only bring you closer to success" 
+                    </p>
+                </li>
+                
+                <li>
+                    <p>
+                        "Loyalty is a two-way street. If I'm asking it from you, then you're getting it from me" - Harvey Specter
+                    </p>
+                </li>
+                
+                <li>
+                    <p>
+                        "Go big or go home" - Silicon Valley
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        "Winners don't make excuses" - Harvey Specter
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        "The only way to do great work is to love what you do" - Steve Jobs
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        "Do not pray for an easy life, pray for the strength to endure a difficult one" - Bruce Lee
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        "The way to get started is to quit talking and begin doing" - Walt Disney
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        "If something is important enough, you do it even if the odds are not in your favor" - Elon Musk
+                    </p>
+                </li>              
+                
+            </ul>
         </div>
     </div>
 
@@ -230,3 +291,5 @@
     </script>
 </body>
 </html>
+
+
