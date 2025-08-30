@@ -49,6 +49,14 @@ class ComponentLoader {
             await this.loadComponent('footer-container', 'components/footer.html');
             console.log('Footer loaded');
             
+            // Debug: Check if footer content is actually loaded
+            const footerContainer = document.getElementById('footer-container');
+            if (footerContainer) {
+                console.log('Footer container found, content:', footerContainer.innerHTML.substring(0, 200));
+            } else {
+                console.error('Footer container not found!');
+            }
+            
             console.log('All components loaded successfully');
         } catch (error) {
             console.error('Error loading components:', error);
