@@ -1,13 +1,41 @@
 <!-- Blog Section -->
 <section class="blog-section" id="blog-section">
     <h2>Blog</h2>
-    <p class="blog-intro">This blog is where I get to share a side of myself you won’t find on a CV or LinkedIn profile. It’s a place for thoughts, stories, lessons learned, and the occasional experiment, basically anything I find worth putting into words. Some posts might be reflections, others just things I find interesting, but all of them will be honest and unfiltered, showing just me, as I am.</p>
-    <div class="blog-posts">
-        <article class="blog-post">
-            <h3 onclick="window.location.href='blog/post1.html'">How I helped my friend getting an internship at REVER</h3>
-        </article>
-        <article class="blog-post">
-            <h3 onclick="window.location.href='blog/post2.html'">Quotes I live by</h3>
-        </article>
+    <p class="blog-intro">This blog is where I get to share a side of myself you won't find on a CV or LinkedIn profile. It's a place for thoughts, stories, lessons learned, and the occasional experiment, basically anything I find worth putting into words. Some posts might be reflections, others just things I find interesting, but all of them will be honest and unfiltered, showing just me, as I am.</p>
+    <div class="blog-posts-container">
+        <button class="blog-scroll-arrow blog-scroll-arrow-left" id="blog-scroll-left" aria-label="Scroll left">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        <div class="blog-posts-viewport">
+            <div class="blog-posts-scroll" id="blog-posts-scroll">
+            <article class="blog-post-card" onclick="window.location.href='blog/post2.html'">
+                <div class="blog-post-header">
+                    <span class="blog-post-date">22nd August, 2025</span>
+                </div>
+                <h3 class="blog-post-title">Quotes I live by</h3>
+                <p class="blog-post-excerpt">A collection of meaningful quotes that guide my perspective and approach to life.</p>
+                <div class="blog-post-footer">
+                    <span class="blog-read-more">Read more →</span>
+                </div>
+            </article>
+            <article class="blog-post-card" onclick="window.location.href='blog/post1.html'">
+                <div class="blog-post-header">
+                    <span class="blog-post-date">4th April, 2025</span>
+                </div>
+                <h3 class="blog-post-title">How I helped my friend getting an internship at REVER</h3>
+                <p class="blog-post-excerpt">A Friday night hackathon turned into an opportunity to help a friend land his internship.</p>
+                <div class="blog-post-footer">
+                    <span class="blog-read-more">Read more →</span>
+                </div>
+            </article>
+            </div>
+        </div>
+        <button class="blog-scroll-arrow blog-scroll-arrow-right" id="blog-scroll-right" aria-label="Scroll right">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
     </div>
 </section>
