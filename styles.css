@@ -1313,9 +1313,10 @@ footer .container {
     }
     
     .blog-post-card {
-        width: 280px;
-        min-height: 380px;
-        padding: 1.5rem;
+        width: min(100vw, 460px);
+        min-height: 230px;
+        padding: 1.25rem 1.5rem;
+        border-radius: 20px;
     }
     
     .blog-scroll-arrow {
