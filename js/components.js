@@ -61,8 +61,38 @@ class ComponentLoader {
             }
             
             console.log('All components loaded successfully');
+            
+            // Handle hash anchor scrolling after components are loaded
+            this.scrollToHash();
         } catch (error) {
             console.error('Error loading components:', error);
+        }
+    }
+
+    static scrollToHash() {
+        // Check if there's a hash in the URL
+        const hash = window.location.hash;
+        if (hash) {
+            // Remove the # symbol
+            const targetId = hash.substring(1);
+            
+            // Wait a bit for the DOM to fully render
+            setTimeout(() => {
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    // Calculate offset for fixed header dynamically
+                    const header = document.querySelector('header');
+                    const headerHeight = header ? header.offsetHeight : 120;
+                    
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
         }
     }
 }
