@@ -155,6 +155,29 @@ header {
     border-bottom-color: #059669;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.resume-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.resume-download:hover {
+    color: var(--accent-primary);
+}
+
 .contact-info {
     display: flex;
     gap: 2rem;
@@ -189,7 +212,7 @@ header {
 
 /* Theme Toggle */
 .theme-toggle {
-    margin-left: 1rem;
+    margin-left: 0;
 }
 
 #theme-toggle {
@@ -1062,6 +1085,11 @@ footer .container {
         font-size: 0.8rem;
     }
 
+    .resume-download {
+        padding: 0.4rem 0;
+        font-size: 0.8rem;
+    }
+
     .social-icon {
         width: 16px;
         height: 16px;
@@ -1078,9 +1106,13 @@ footer .container {
         white-space: normal;
     }
 
+    .header-actions {
+        margin-top: 0.5rem;
+    }
+
     .theme-toggle {
         margin-left: 0;
-        margin-top: 0.5rem;
+        margin-top: 0;
     }
 
     main {
@@ -1171,14 +1203,28 @@ footer .container {
         font-size: 0.7rem;
         margin-top: 0.25rem;
     }
+
+    .resume-download {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.25rem;
+        min-height: 44px;
+    }
+
+    .resume-download span {
+        font-size: 0.7rem;
+    }
     
     .social-icon {
         width: 20px;
         height: 20px;
     }
     
-    .theme-toggle {
+    .header-actions {
         margin-top: 0.25rem;
+    }
+
+    .theme-toggle {
+        margin-top: 0;
     }
     
     #theme-toggle {
